@@ -83,7 +83,7 @@ preferences:
   search:
     enabled: true
     shortcut_hint: 
-        enabled: true
+      enabled: true
   wiki_style_link: # This property handles wiki style links '[['
     enabled: true
   sidenotes: 

@@ -2,6 +2,7 @@
 *
 * MIT License
 * Copyright (c) 2020 Raghuveer S
+* Copyright (c) 2023 Scott V. Kissinger [updates only]
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -30,41 +31,33 @@
 {%- endcomment -%}
 
 {%- if page.permalink == "/" -%}
-{%- if site.preferences.contextmenu.enabled -%}
-<nav class="context-menu" id="context-menu">
+  {%- if site.preferences.contextmenu.enabled -%}
+  <nav class="context-menu" id="context-menu">
     <ul class="context-menu__items">
       {%- if site.preferences.contextmenu.copylink.enabled -%}
       <li class="context-menu__item">
-          <a href="#" class="context-menu__link" data-action="copy-link">
-            Copy link
-          </a>
+        <a href="#" class="context-menu__link" data-action="copy-link">Copy link</a>
       </li>
       {%- endif -%}
       {%- if site.preferences.contextmenu.newtab.enabled -%}
-       <li class="context-menu__item">
-        <a href="#" class="context-menu__link" data-action="new-tab">
-          Open in new tab
-        </a>
+      <li class="context-menu__item">
+        <a href="#" class="context-menu__link" data-action="new-tab">Open in new tab</a>
       </li>
       {%- endif -%}
       {%- if site.preferences.contextmenu.related.enabled -%}
       <li class="context-menu__item">
-            <a href="#" class="context-menu__link" data-action="related-posts">
-              View Related Posts
-            </a>
+        <a href="#" class="context-menu__link" data-action="related-posts">View Related Posts</a>
       </li>
       {%- endif -%}
       {%- if site.preferences.contextmenu.backlinks.enabled -%}
       <li class="context-menu__item">
-            <a href="#" class="context-menu__link" data-action="backlinks">
-              View Links to this note
-            </a>
+        <a href="#" class="context-menu__link" data-action="backlinks">View links to this note</a>
       </li>
       {%- endif -%}
     </ul>
-</nav>
-<nav class="context-menu-res" id="context-menu-res">
-</nav>
-<script src="/assets/js/ContextMenu.js"></script>
-{%- endif -%}
+  </nav>
+  <nav class="context-menu-res" id="context-menu-res">
+  </nav>
+  <script src="/assets/js/ContextMenu.js"></script>
+  {%- endif -%}
 {%- endif -%}

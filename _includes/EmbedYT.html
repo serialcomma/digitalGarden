@@ -2,6 +2,7 @@
 *
 * MIT License
 * Copyright (c) 2020 Raghuveer S
+* Copyright (c) 2023 Scott V. Kissinger [updates only]
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -24,16 +25,16 @@
 * File: EmbedYT.html
 * Author@Raghuveer S
 *
-* This file contains the markup for being able to embed yt videos on your blogpost.
+* This file contains the markup for being able to embed youtube videos on your blogpost.
 *
 {%- endcomment -%}
 
 <div class="embed-container">
-    <iframe
-        src="https://www.youtube.com/embed/{{ include.id }}"
-        width="80%"
-        height="480"
-        frameborder="0"
-        allowfullscreen="">
-    </iframe>
+  <iframe
+    src="https://www.youtube.com/embed/{{ include.id }}"
+    width="80%"
+    height="480"
+    frameborder="0"
+    allowfullscreen="">
+  </iframe>
 </div>

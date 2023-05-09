@@ -1,4 +1,5 @@
 ---
 layout: Post
-permalink: /notes
+permalink: /notes/
+# look at dates.md for the logic
 ---
