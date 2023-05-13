@@ -1,10 +1,13 @@
 ---
 layout: Post
+type: Post
+status: 🔧 Reworked
+date: 2023-05-12
+created: 2023-04-29
 title: Digital Gardens
-tags: digitalGarden Favorite
-status: Draft
+subtitle: An Experiment in Learning in Public
 theme: PKM
-type: note
+tags: digitalGarden Favorite
 inspiration: "[A Brief History & Ethos of the Digital Garden](https://maggieappleton.com/garden-history)"
 ---
 

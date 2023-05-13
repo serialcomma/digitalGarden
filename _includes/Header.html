@@ -1,4 +1,4 @@
-{%- comment -%}
+<!-------------------------------------------------------------------------------------
 *
 * MIT License
 * Copyright (c) 2020 Raghuveer S
@@ -28,7 +28,7 @@
 * This file contains the markup for the site heading, subheading, user description, 
 *  user avatar, searchbar, site tagline.
 *
-{%- endcomment -%}
+------------------------------------------------------------------------------------>
 
 <header>
   <div class="dashboard disable-select">
@@ -214,33 +214,37 @@
       </svg>
       <p class="menu-item-text">About</p>
     </a>
-      <a class="menu-item" href="/tags">
-        <svg class="menu-item-icon" width="18" height="19" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 9.5H20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M4 15.5H20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            <path
-              d="M10 3.5L8 21.5" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" />
-            <path
-              d="M16 3.5L14 21.5" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" />
-        </svg>
-        <p class="menu-item-text">Tags</p>
-      </a>
-      <a class="menu-item" href="/feed.xml">
-        <svg class="menu-item-icon" width="18" height="19" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <a class="menu-item" href="/now">
+      <img src="../assets/img/now-thin.png" class="menu-item-icon" style="max-width: 18px; max-height: 19px;" alt="now icon">
+      <p class="menu-item-text">Now</p>
+    </a>
+    <a class="menu-item" href="/tags">
+      <svg class="menu-item-icon" width="18" height="19" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 9.5H20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M4 15.5H20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
           <path
-            d="M4 11.5C6.38695 11.5 8.67613 12.4482 10.364 14.136C12.0518 15.8239 13 18.1131 13 20.5"
-            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            d="M10 3.5L8 21.5" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
           <path
-            d="M4 4.5C8.24346 4.5 12.3131 6.18571 15.3137 9.18629C18.3143 12.1869 20 16.2565 20 20.5"
-            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          <path
-            d="M5 20.5C5.55228 20.5 6 20.0523 6 19.5C6 18.9477 5.55228 18.5 5 18.5C4.44772 18.5 4 18.9477 4 19.5C4 20.0523 4.44772 20.5 5 20.5Z"
-            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-        <p class="menu-item-text">RSS</p>
-      </a>
+            d="M16 3.5L14 21.5" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+      </svg>
+      <p class="menu-item-text">Tags</p>
+    </a>
+    <a class="menu-item" href="/feed.xml">
+      <svg class="menu-item-icon" width="18" height="19" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M4 11.5C6.38695 11.5 8.67613 12.4482 10.364 14.136C12.0518 15.8239 13 18.1131 13 20.5"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path
+          d="M4 4.5C8.24346 4.5 12.3131 6.18571 15.3137 9.18629C18.3143 12.1869 20 16.2565 20 20.5"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path
+          d="M5 20.5C5.55228 20.5 6 20.0523 6 19.5C6 18.9477 5.55228 18.5 5 18.5C4.44772 18.5 4 18.9477 4 19.5C4 20.0523 4.44772 20.5 5 20.5Z"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <p class="menu-item-text">RSS</p>
+    </a>
   </div>
 
   {%- if site.preferences.search.enabled -%}
@@ -254,12 +258,12 @@
 
     {%- if site.preferences.search.shortcut_hint.enabled -%}
     <div class="search-shortcut disable-select">
-      <kbd class="disable-select">Shift</kbd>
-      <kbd class="disable-select">s</kbd>
+      <kbd class="disable-select small">Shift+S</kbd>
+      <!-- <kbd class="disable-select">s</kbd> -->
     </div>
     {%- endif -%}
     <label for="search-input"></label>
-    <input type="text" id="search-input" autocomplete="off" placeholder="Search {{site.heading}}..."/>
+    <input type="text" id="search-input" autocomplete="off" placeholder="Search {{site.heading}} ..."/>
     <div id="search-results" class="search-results"></div>
   </div>
   <script type="text/javascript" src="/assets/js/vendor/lunr.min.js"></script>
@@ -268,13 +272,16 @@
 
   {%- if page.permalink != "/" -%}
   <div class="main-site-subheader disable-select" id="scroll-head">
-    <div class="back-icon" onclick="window.location.assign('/');">
-      <svg class="ripple" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-        <path d="M0 0h24v24H0z" fill="none"/>
-        <path d="M21 11H6.83l3.58-3.59L9 6l-6 6 6 6 1.41-1.41L6.83 13H21z"/>
-      </svg>
-    </div>
-    <p class="back-p">Home</p>    
+    <!-- <div class="back-icon" onclick="window.location.assign('/');"> -->
+    <a href="/" style="text-decoration: none;">
+      <div class="back-icon">
+        <svg class="ripple" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M21 11H6.83l3.58-3.59L9 6l-6 6 6 6 1.41-1.41L6.83 13H21z"/>
+        </svg>
+      </div>
+      <p class="back-p small-medium regular-sans">Home</p>    
+    </a>
   </div>
   {%- endif -%}
 </header>

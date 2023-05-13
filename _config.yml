@@ -28,14 +28,14 @@ url: "https://serial-comma.com/" # the base hostname & protocol for your site, e
 # your social media links etc
 #######################################################################
 
-heading: The Serial Comma Digital Garden
+heading: Serial Comma
 subheading: # subheading won't work without a tagline, 
           # tagline is mandatory if you want the 
           # suheading to appear. The reason is
           # having a heading and a subheading looks 
           # ridiculous.
   enabled: true
-  name: Notes and Thoughts
+  name: Posts and Notes
 tagline: # subheading won't work without a tagline, 
           # tagline is mandatory if you want the 
           # suheading to appear. The reason is
@@ -43,9 +43,8 @@ tagline: # subheading won't work without a tagline,
           # ridiculous.
           # Although you can have the tagline without 
           # the subheading to support the main heading
-          # which in this case is 'Knowledge Continuum'
   enabled: true
-  name: An experiment
+  name: A digital garden
 copyright: 
   year: 2023
   msg: Serial Comma LLC # This is a mandatory attribute for copyright to be displayed
@@ -70,7 +69,6 @@ user:
     twitch: null
     facebook: null 
     instagram: null
-
 
 
 #####################################################################

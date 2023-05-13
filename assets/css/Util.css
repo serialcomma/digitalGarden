@@ -2,50 +2,43 @@
 layout: Stylesheet
 ---
 
-/* Utilities: Disable Selection, Kramdown TOC */
 
-.disable-select {
-  user-select: none; /* supported by Chrome and Opera */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-}
+/* see Style.css for font size definitions */
 
 .very-small {
-  font-size: 12px !important;
+  font-size: 0.614rem !important;
 }
 
 .medium-small {
-  font-size: 13.5px !important;
+  font-size: 0.768rem !important;
 }
 
 .small {
-  font-size: 16px !important;
+  font-size: 0.960rem !important;
 }
 
 .small-medium {
-  font-size: 18px !important;
+  font-size: 1.200rem !important;
 }
 
 .medium {
-  font-size: 22px !important;
+  font-size: 1.5rem !important;
 }
 
 .medium-large {
-  font-size: 25px !important;
+  font-size: 1.875rem !important;
 }
 
 .large {
-  font-size: 28px !important;
+  font-size: 2.344rem !important;
 }
 
 .serif {
-  font-family: Georgia, serif !important;
+  font-family: Lora, serif !important;
 }
 
 .title-sans {
-  font-family: var(--primary-font-family) !important;
+  font-family: var(--heading-font-family) !important;
 }
 
 .regular-sans {
