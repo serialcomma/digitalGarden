@@ -2,7 +2,9 @@
 layout: Stylesheet
 ---
 
+@import "/assets/css/reset.css";
 @import "/assets/css/highlight.css";
+
 /* Containers: Body, Container, Box, Main, Header, Content */
 
 :root {
@@ -69,11 +71,11 @@ body {
   position: relative;
   flex-direction: column;
   justify-content: center;
-  position: absolute;
+  /* position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 0; */
   align-items: center;
   max-width: 1100px;
   margin-right: auto;
@@ -84,7 +86,7 @@ body {
   border-left: 1px solid var(--primary-border-color);
   border-right: 1px solid var(--primary-border-color);
   border-bottom: 1px solid var(--primary-border-color);
-  width: 60%;
+  width: 65%;
   position: absolute;
   top: 0;
 }
@@ -132,11 +134,6 @@ h1, h2 {
   font-weight: normal;
 }
 
-h2 {
-  padding-bottom: 0.25rem;
-  border-bottom: 1px solid var(--secondary-border-color);
-}
-
 h3, h4, h5, h6 {
   color: var(--primary-text-color);
   font-family:  var(--heading-font-family);
@@ -145,8 +142,8 @@ h3, h4, h5, h6 {
 
 a, p, ul, li, ol, table, span, blockquote {
   color: var(--primary-text-color);
-  font-family:   var(--primary-font-family);
-  font-size: var(--text-base);  /* Let's set the font-size to something old-man friendly */
+/*   font-family:   var(--primary-font-family);
+  font-size: var(--text-base) */  /* Let's set the font-size to something old-man friendly */
 }
 
 span {
@@ -243,6 +240,11 @@ blockquote {
   padding: 10px;
 }
 
+blockquote p {
+  font-family: inherit;
+  font-size: var(--text-s);
+}
+
 summary {
   display: flex;
   align-items: center;
@@ -250,13 +252,8 @@ summary {
 }
 
 cite {
-  padding-left: 50px;
+  padding-left: 1rem;
   font-style: oblique;
-}
-
-blockquote p {
-  font-family: inherit;
-  font-size: var(--text-s);
 }
 
 table {
@@ -307,6 +304,7 @@ hr {
 /* Blogposts: Post-heading, Post-subheading, Post-content, Related Posts*/
 
 .site-heading-rtl {
+  padding: 16px 0;
   border-bottom: 2px solid var(--primary-border-color);
   display: flex;
   flex-direction: column;
@@ -327,7 +325,6 @@ hr {
   font-size: var(--text-xs);
   font-weight: 600;
   margin-right: 20px;
-  margin-top: -25px;
 }
 
 .site-heading-rtl > .main-page-subheading {
@@ -335,7 +332,6 @@ hr {
   font-family:  var(--primary-font-family);
   font-weight: 600;
   font-size: var(--text-s) !important;
-  margin-top: -8px;
   margin-right: 20px;
 }
 
@@ -344,6 +340,8 @@ hr {
 }
 
 .site-heading-ltr {
+  padding: 16px 0;
+  border-bottom: 2px solid var(--primary-border-color);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -363,7 +361,6 @@ hr {
   font-size: var(--text-s);
   font-weight: 600;
   margin-left: 20px;
-  margin-top: -25px;
 }
 
 .site-heading-ltr > .main-page-subheading {
@@ -371,7 +368,6 @@ hr {
   font-family:  var(--primary-font-family);
   font-weight: 600;
   font-size: var(--text-s) !important;
-  margin-top: -8px;
   margin-left: 20px;
 }
 
@@ -416,17 +412,17 @@ hr {
   clear: both;
   background-color: var(--secondary-bg-color);
   width: 100%;
+  padding: 16px 0;
 }
 
 .username {
-  padding-top: 15px;
   padding-left: 20px;
-  font-size: var(--text-s);
+  margin-bottom: 0.5rem;
   font-weight: 600;
 }
 
 .username p a {
-  font-size: var(--text-s);
+  font-family: var(--secondary-font-family);
 }
 
 .username:hover {
@@ -436,15 +432,17 @@ hr {
 
 .userdesc {
   padding-left: 20px;
-  margin-top: -13px;
+  font-size: var(--text-s);
 }
 
 .bio {
+  margin-bottom: 0.5rem;
+  font-family: var(--primary-font-family);
   font-size: var(--text-s);
 }
 
 .alt_link {
-  margin-top: -12px;
+  font-family: var(--secondary-font-family);
   font-size: var(--text-xs) !important;
   display: flex;
   flex-direction: row;
@@ -457,7 +455,6 @@ hr {
 }
 
 .social {
-  margin-top: -9px;
   font-size: var(--text-xs) !important;
 }
 
@@ -467,7 +464,7 @@ hr {
 
 .main-site-subheader {
   border-bottom: 1px solid var(--primary-border-color);
-  padding-left: 15px;
+  padding: 15px 0 15px 15px;
 }
 
 .menu {
@@ -487,13 +484,10 @@ hr {
   flex-direction: column;
   padding-left: 14px;
   padding-right: 17px;
-  padding-top: 5px;
-  padding-bottom: 5px;
   text-decoration: none;
 }
 
 .menu-item-icon {
-  margin-top: 7px;
   align-self: center;
   justify-self: center;
   stroke: var(--primary-text-color);
@@ -544,6 +538,10 @@ hr {
 
 /* Common custom components between Main Site and Notes: Searchbar, Backbutton, ContentBox, Related Posts/Notes, Copyright,  */
 
+.search-container {
+  margin-bottom: 5px;
+}
+
 .searchbar input[type="text"] {
   position: relative;
   padding-left: 50px;
@@ -566,11 +564,10 @@ hr {
 
 .search-icon {
   position: absolute;
+  left: 20px;
   vertical-align: middle;
-  margin-top: -2px;
-  padding-left: 20px;
+  /* padding-left: 20px; */
   stroke: var(--secondary-text-color) !important;
-  padding-top: 12.5px;
   z-index: 1;
 }
 
@@ -799,18 +796,6 @@ hr {
   cursor: pointer;
   font-weight: 600;
 }
-
-.feed-title-excerpt-block {
-  width: 100%;
-  cursor: pointer;
-  border-top: 1px solid var(--primary-border-color);
-  border-bottom: 1px solid var(--primary-border-color);
-}
-
-.feed-title-excerpt-block:hover {
-  background-color: var(--secondary-bg-color);
-}
-
 .srccode {
   position: absolute;
   right: 10px;
@@ -820,19 +805,46 @@ hr {
   font-weight: 600;
 }
 
+.feed-title-excerpt-block {
+  width: 100%;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  border-top: 1px solid var(--primary-border-color);
+  border-bottom: 1px solid var(--primary-border-color);
+  padding: 10px 0;
+}
+
+.feed-title-excerpt-block:hover {
+  background-color: var(--secondary-bg-color);
+}
+
+.feed-title-block {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
 .feed-title {
   color: var(--primary-text-color);
-  margin-left: 20px;
-  margin-right: 50px;
+  margin-left: 1.25rem;
+  margin-right: 3rem;
   font-size: var(--text-base);
   font-family:  var(--heading-font-family);
   font-weight: 600;
   line-height: calc( var(--text-base) * 1.3);
 }
 
+.feed-subtitle {
+  color: var(--primary-text-color);
+  margin-left: 2.5rem;
+  margin-right: 3rem;
+  font-size: var(--text-s);
+  font-family:  var(--heading-font-family);
+  font-weight: 600;
+  line-height: calc( var(--text-s) * 1.3);
+}
+
 .feed-excerpt{
   color: var(--primary-text-color);
-  margin-top: -12px;
   margin-left: 20px !important;
   margin-right: 30px;
   font-family:  var(--primary-font-family);
@@ -858,15 +870,21 @@ hr {
   display: inline-block;
   padding: 0 12px;
   border-radius: 32px;
+  margin-right: 3px;
   height: auto;
   vertical-align: middle;
-  font-family:  var(--secondary-font-family);
+  font-family: var(--secondary-font-family);
   font-weight: normal !important;
   font-size: var(--text-xs);
 }
 
 .content {
-  line-height: calc( var(--text-base) * 1.833);
+  margin: 1.5rem 0;
+}
+
+.content p {
+  font-family: var(--primary-font-family);
+  font-size: var(--text-base); /* Let's set the font-size to something old-man friendly */  line-height: calc( var(--text-base) * 1.833);
 }
 
 .content a {
@@ -972,6 +990,23 @@ li .mn-right {
   text-align: left;
 }
 
+.bylink_h2 {
+  margin-top: 1.5rem;
+}
+
+.bylink {
+  list-style: none;
+}
+.bylink a {
+  font-family: var(--primary-font-family);
+  font-size: var(--text-base); /* Let's set the font-size to something old-man friendly */  line-height: calc( var(--text-base) * 1.833);
+  padding-left: 2rem;
+}
+
+.bylink a:hover {
+  text-decoration: underline;
+  color: var(--anchor-text-color);
+}
 .tooltip {
   display:inline;
   position:relative;

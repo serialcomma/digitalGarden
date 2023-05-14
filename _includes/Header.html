@@ -1,4 +1,4 @@
-<!-------------------------------------------------------------------------------------
+{%- comment -%}
 *
 * MIT License
 * Copyright (c) 2020 Raghuveer S
@@ -28,7 +28,7 @@
 * This file contains the markup for the site heading, subheading, user description, 
 *  user avatar, searchbar, site tagline.
 *
------------------------------------------------------------------------------------->
+{%- endcomment -%}
 
 <header>
   <div class="dashboard disable-select">
@@ -62,25 +62,25 @@
       {%- assign userboard_display = 'hide' -%}
     {%- endif -%}
 
-    <div class="{{header_direction}} profile-board-col">
+    <div class="{{header_direction}}">
       <p class="main-page-heading {{main_heading_size}} {{main_heading_margin}}"><a href='/'>{{site.heading}}</a></p>
       {%- if site.tagline.enabled -%}
         {%- if site.subheading.enabled -%}
-          <h4 class="main-page-subheading medium"><a href="/">{{site.subheading.name}}</a></h4>
+          <p class="main-page-subheading medium"><a href="/">{{site.subheading.name}}</a></p>
         {%- endif -%}
         <p class="main-page-tagline">{{site.tagline.name}}</p>
       {%- endif -%}
     </div>
 
     {%- if site.user.display and userboard_display == 'show' -%}
-    <div class="userboard {{userboard_margin}} profile-board-col">
+    <div class="userboard {{userboard_margin}}">
       <div class="username">
-        <p class="title-sans"><a href="/about/" style="text-decoration: none;">{{site.user.name}}</a></p>
+        <p><a href="/about/" style="text-decoration: none;">{{site.user.name}}</a></p>
       </div>
       <div class="userdesc">
-        <p class="bio title-sans">{{site.user.bio}}</p>
+        <p class="bio">{{site.user.bio}}</p>
         {%- if site.user.alt_link != nil and site.user.alt_link != empty and site.user.alt_link != null -%}
-        <p class="alt_link title-sans">
+        <p class="alt_link">
           <svg height="16" width="15" viewBox="0 0 24 24" class="anchor-link">
             <path
               d="M11.96 14.945c-.067 0-.136-.01-.203-.027-1.13-.318-2.097-.986-2.795-1.932-.832-1.125-1.176-2.508-.968-3.893s.942-2.605 2.068-3.438l3.53-2.608c2.322-1.716 5.61-1.224 7.33 1.1.83 1.127 1.175 2.51.967 3.895s-.943 2.605-2.07 3.438l-1.48 1.094c-.333.246-.804.175-1.05-.158-.246-.334-.176-.804.158-1.05l1.48-1.095c.803-.592 1.327-1.463 1.476-2.45.148-.988-.098-1.975-.69-2.778-1.225-1.656-3.572-2.01-5.23-.784l-3.53 2.608c-.802.593-1.326 1.464-1.475 2.45-.15.99.097 1.975.69 2.778.498.675 1.187 1.15 1.992 1.377.4.114.633.528.52.928-.092.33-.394.547-.722.547z"
@@ -94,10 +94,10 @@
         {%- endif -%}
 
         {%- if site.user.social.enabled -%}
-        <p class="social very-small title-sans">
+        <p class="social">
         {%- if site.user.social.twitter != nil and site.user.social.twitter != empty and site.user.social.twitter != null -%}
           <span><a href="https://twitter.com/{{site.user.social.twitter}}">
-            <svg width="15.5" height="14.5" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="19.5" height="18.5" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M23 2C22.0424 2.67548 20.9821 3.19211 19.86 3.53C19.2577 2.83751 18.4573 2.34669 17.567 2.12393C16.6767 1.90116 15.7395 1.9572 14.8821 2.28445C14.0247 2.61171 13.2884 3.1944 12.773 3.95372C12.2575 4.71303 11.9877 5.61234 12 6.53V7.53C10.2426 7.57557 8.50127 7.18581 6.93101 6.39545C5.36074 5.60508 4.01032 4.43864 3 3C3 3 -1 12 8 16C5.94053 17.398 3.48716 18.0989 1 18C10 23 21 18 21 6.5C20.9991 6.22145 20.9723 5.94359 20.92 5.67C21.9406 4.66349 22.6608 3.39271 23 2V2Z"
                 fill="#555555" stroke="#555555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -107,7 +107,7 @@
 
         {%- if site.user.social.github != nil and site.user.social.github != empty and site.user.social.github != null -%}
           <span><a href="https://github.com/{{site.user.social.github}}">
-            <svg width="13.5" height="14.5" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="17.5" height="18.5" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M8 19C3 20.5 3 16.5 1 16L8 19ZM15 22V18.13C15.0375 17.6532 14.9731 17.1738 14.811 16.7238C14.6489 16.2738 14.3929 15.8634 14.06 15.52C17.2 15.17 20.5 13.98 20.5 8.52C20.4997 7.12383 19.9627 5.7812 19 4.77C19.4559 3.54851 19.4236 2.19835 18.91 0.999999C18.91 0.999999 17.73 0.649999 15 2.48C12.708 1.85882 10.292 1.85882 8 2.48C5.27 0.649999 4.09 0.999999 4.09 0.999999C3.57638 2.19835 3.54414 3.54851 4 4.77C3.03013 5.7887 2.49252 7.14346 2.5 8.55C2.5 13.97 5.8 15.16 8.94 15.55C8.611 15.89 8.35726 16.2954 8.19531 16.7399C8.03335 17.1844 7.96681 17.6581 8 18.13V22"
                 fill="#555555" />
@@ -115,12 +115,12 @@
                 d="M15 22V18.13C15.0375 17.6532 14.9731 17.1738 14.811 16.7238C14.6489 16.2738 14.3929 15.8634 14.06 15.52C17.2 15.17 20.5 13.98 20.5 8.52C20.4997 7.12383 19.9627 5.7812 19 4.77C19.4559 3.54851 19.4236 2.19835 18.91 0.999999C18.91 0.999999 17.73 0.649999 15 2.48C12.708 1.85882 10.292 1.85882 8 2.48C5.27 0.649999 4.09 0.999999 4.09 0.999999C3.57638 2.19835 3.54414 3.54851 4 4.77C3.03013 5.7887 2.49252 7.14346 2.5 8.55C2.5 13.97 5.8 15.16 8.94 15.55C8.611 15.89 8.35726 16.2954 8.19531 16.7399C8.03335 17.1844 7.96681 17.6581 8 18.13V22M8 19C3 20.5 3 16.5 1 16L8 19Z"
                 stroke="#555555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-          </a></span>&nbsp;&nbsp;&nbsp;
+          </a></span>
         {%- endif -%}
 
         {%- if site.user.social.twitch != nil and site.user.social.twitch != empty and site.user.social.twitch != null -%}
           <span><a href="https://twitch.tv/{{site.user.social.twitch}}">
-            <svg width="15.5" height="14.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="19.5" height="18.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M21 2H3V18H8V22L12 18H17L21 14V2ZM16 11V7Z" fill="#555555" />
               <path 
                 d="M11 11V9V7M16 11V7M21 2H3V18H8V22L12 18H17L21 14V2Z" stroke="#555555" stroke-width="2"
@@ -137,7 +137,7 @@
 
         {%- if site.user.social.youtube != nil and site.user.social.youtube != empty and site.user.social.youtube != null -%}
           <span><a href="https://youtube.com/{{site.user.social.youtube}}">
-            <svg width="13.5" height="14.5" viewBox="0 0 24 24" fill="#555" xmlns="http://www.w3.org/2000/svg">
+            <svg width="17.5" height="18.5" viewBox="0 0 24 24" fill="#555" xmlns="http://www.w3.org/2000/svg">
               <path
                   d="M22.54 6.42C22.4212 5.94541 22.1793 5.51057 21.8387 5.15941C21.498 4.80824 21.0708 4.55318 20.6 4.42C18.88 4 12 4 12 4C12 4 5.12 4 3.4 4.46C2.92925 4.59318 2.50198 4.84824 2.16135 5.19941C1.82072 5.55057 1.57879 5.98541 1.46 6.46C1.14521 8.20556 0.991235 9.97631 0.999999 11.75C0.988779 13.537 1.14277 15.3213 1.46 17.08C1.59096 17.5398 1.83831 17.9581 2.17814 18.2945C2.51798 18.6308 2.93882 18.8738 3.4 19C5.12 19.46 12 19.46 12 19.46C12 19.46 18.88 19.46 20.6 19C21.0708 18.8668 21.498 18.6118 21.8387 18.2606C22.1793 17.9094 22.4212 17.4746 22.54 17C22.8524 15.2676 23.0063 13.5103 23 11.75C23.0112 9.96295 22.8572 8.1787 22.54 6.42V6.42Z"
                   stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -150,7 +150,7 @@
 
         {%- if site.user.social.linkedin != nil and site.user.social.linkedin != empty and site.user.social.linkedin != null -%}
           <span><a href="https://linkedin.com/in/{{site.user.social.linkedin}}">
-            <svg width="14.5" height="14.5" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="18.5" height="18.5" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M16 8.5C17.5913 8.5 19.1174 9.13214 20.2426 10.2574C21.3679 11.3826 22 12.9087 22 14.5V21.5H18V14.5C18 13.9696 17.7893 13.4609 17.4142 13.0858C17.0391 12.7107 16.5304 12.5 16 12.5C15.4696 12.5 14.9609 12.7107 14.5858 13.0858C14.2107 13.4609 14 13.9696 14 14.5V21.5H10V14.5C10 12.9087 10.6321 11.3826 11.7574 10.2574C12.8826 9.13214 14.4087 8.5 16 8.5V8.5Z"
                 fill="#555555" stroke="#555555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -166,7 +166,7 @@
 
         {%- if site.user.social.facebook != nil and site.user.social.facebook != empty and site.user.social.facebook != null -%}
           <span><a href="https://facebook.com/{{site.user.social.facebook}}">
-            <svg width="13" height="14.5" viewBox="0 0 13 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="17" height="18.5" viewBox="0 0 13 22" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M12 1H9C7.67392 1 6.40215 1.52678 5.46447 2.46447C4.52678 3.40215 4 4.67392 4 6V9H1V13H4V21H8V13H11L12 9H8V6C8 5.73478 8.10536 5.48043 8.29289 5.29289C8.48043 5.10536 8.73478 5 9 5H12V1Z"
                 fill="#555555" stroke="#555555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -176,7 +176,7 @@
 
         {%- if site.user.social.instagram != nil and site.user.social.instagram != empty and site.user.social.instagram != null -%}
           <span><a href="https://instagram.com/{{site.user.social.instagram}}">
-            <svg width="14.5" height="14.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="18.5" height="18.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M17 2H7C4.23858 2 2 4.23858 2 7V17C2 19.7614 4.23858 22 7 22H17C19.7614 22 22 19.7614 22 17V7C22 4.23858 19.7614 2 17 2Z"
                 fill="#555555" stroke="#555555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />

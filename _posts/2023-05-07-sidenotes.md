@@ -1,6 +1,6 @@
 ---
 layout: Post
-type: #Post or Note
+type: Post
 status: ⚠️ Draft
 date: 2023-05-07
 created: 2023-05-07

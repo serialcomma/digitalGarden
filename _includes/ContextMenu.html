@@ -30,34 +30,32 @@
 *
 {%- endcomment -%}
 
-{%- if page.permalink == "/" -%}
-  {%- if site.preferences.contextmenu.enabled -%}
-  <nav class="context-menu" id="context-menu">
-    <ul class="context-menu__items">
-      {%- if site.preferences.contextmenu.copylink.enabled -%}
-      <li class="context-menu__item">
-        <a href="#" class="context-menu__link" data-action="copy-link">Copy link</a>
-      </li>
-      {%- endif -%}
-      {%- if site.preferences.contextmenu.newtab.enabled -%}
-      <li class="context-menu__item">
-        <a href="#" class="context-menu__link" data-action="new-tab">Open in new tab</a>
-      </li>
-      {%- endif -%}
-      {%- if site.preferences.contextmenu.related.enabled -%}
-      <li class="context-menu__item">
-        <a href="#" class="context-menu__link" data-action="related-posts">View Related Posts</a>
-      </li>
-      {%- endif -%}
-      {%- if site.preferences.contextmenu.backlinks.enabled -%}
-      <li class="context-menu__item">
-        <a href="#" class="context-menu__link" data-action="backlinks">View links to this note</a>
-      </li>
-      {%- endif -%}
-    </ul>
-  </nav>
-  <nav class="context-menu-res" id="context-menu-res">
-  </nav>
-  <script src="/assets/js/ContextMenu.js"></script>
-  {%- endif -%}
+{%- if site.preferences.contextmenu.enabled -%}
+<nav class="context-menu" id="context-menu">
+  <ul class="context-menu__items">
+    {%- if site.preferences.contextmenu.copylink.enabled -%}
+    <li class="context-menu__item">
+      <a href="#" class="context-menu__link" data-action="copy-link">Copy link</a>
+    </li>
+    {%- endif -%}
+    {%- if site.preferences.contextmenu.newtab.enabled -%}
+    <li class="context-menu__item">
+      <a href="#" class="context-menu__link" data-action="new-tab">Open in new tab</a>
+    </li>
+    {%- endif -%}
+    {%- if site.preferences.contextmenu.related.enabled -%}
+    <li class="context-menu__item">
+      <a href="#" class="context-menu__link" data-action="related-posts">View Related Posts</a>
+    </li>
+    {%- endif -%}
+    {%- if site.preferences.contextmenu.backlinks.enabled -%}
+    <li class="context-menu__item">
+      <a href="#" class="context-menu__link" data-action="backlinks">View links to this note</a>
+    </li>
+    {%- endif -%}
+  </ul>
+</nav>
+<nav class="context-menu-res" id="context-menu-res">
+</nav>
+<script src="/assets/js/ContextMenu.js"></script>
 {%- endif -%}

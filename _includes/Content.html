@@ -30,12 +30,12 @@
 *
 {%- endcomment -%}
 
-<!-- Parse internal links, external links, transclusions etc and manipuate the content to reflect it accordingly -->
+<!-- Parse internal links, external links, transclusions etc and manipulate the content to reflect it accordingly -->
 {%- if page.content-type == "post" -%}
 <ul class="tags">
   {%- if page.status != nil and page.status != empty -%}
   <li>
-    <a href="javascript:void(0)" class="tag"><i>{{ page.status | capitalize }}</i></a>
+    <a href="javascript:void(0)" class="tag">{{ page.status }} {{ page.type }}</a>
   </li>
   {%- endif -%}
   <li>
@@ -55,6 +55,13 @@
   {%- endfor -%}
 </ul>
 {%- endif -%}
+
+<h1>{{ page.title }}</h1>
+{%- if page.subtitle != nil and page.subtitle != empty -%}
+<h2>{{ page.subtitle }}</h2>
+{%- endif -%}
+
+<article>
 <div class="content">
   {%- if site.preferences.wiki_style_link.enabled -%}
     {%- assign content_array = content | split:'[[' -%}
@@ -175,3 +182,4 @@
     {{content}}
   {%- endif -%}
 </div>
+</article>
