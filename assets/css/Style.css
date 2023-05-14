@@ -358,7 +358,7 @@ hr {
 .site-heading-ltr > .main-page-tagline {
   color: var(--secondary-text-color);
   font-family:  var(--primary-font-family);
-  font-size: var(--text-s);
+  font-size: var(--text-xs);
   font-weight: 600;
   margin-left: 20px;
 }
@@ -539,12 +539,18 @@ hr {
 /* Common custom components between Main Site and Notes: Searchbar, Backbutton, ContentBox, Related Posts/Notes, Copyright,  */
 
 .search-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 5px;
+  background-color: var(--secondary-bg-color);
 }
 
 .searchbar input[type="text"] {
   position: relative;
-  padding-left: 50px;
+  padding-left: 30px;
   box-sizing : border-box;
   width: 100%;
   height: 40px;
@@ -563,20 +569,21 @@ hr {
 }
 
 .search-icon {
-  position: absolute;
-  left: 20px;
-  vertical-align: middle;
-  /* padding-left: 20px; */
+  order: 1;
+  flex-grow: 1;
+  padding-left: 20px;
   stroke: var(--secondary-text-color) !important;
-  z-index: 1;
+}
+
+.search-input-field {
+  order: 2;
+  flex-grow: 20;
 }
 
 .search-shortcut {
-  position: absolute;
-  margin-top: -2px;
-  padding-top: 12.5px;
-  z-index: 1;
-  right: 0 !important;
+  order: 3;
+  flex-grow: 2;
+  text-align: right;
   padding-right: 20px;
 }
 
