@@ -71,11 +71,6 @@ body {
   position: relative;
   flex-direction: column;
   justify-content: center;
-  /* position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0; */
   align-items: center;
   max-width: 1100px;
   margin-right: auto;
@@ -885,13 +880,30 @@ hr {
   font-size: var(--text-xs);
 }
 
+.post-subtitle {
+  padding-left: 2rem;
+}
+
+/* styles for the markdown of posts */
+
 .content {
   margin: 1.5rem 0;
 }
 
-.content p {
+.content p,
+.content a,
+.content ol,
+.content ul,
+.content li,
+.content table,
+.content span,
+.content blockquote {
   font-family: var(--primary-font-family);
   font-size: var(--text-base); /* Let's set the font-size to something old-man friendly */  line-height: calc( var(--text-base) * 1.833);
+}
+
+.content h3 {
+  margin: var(--text-base) 0;
 }
 
 .content a {
@@ -1014,6 +1026,7 @@ li .mn-right {
   text-decoration: underline;
   color: var(--anchor-text-color);
 }
+
 .tooltip {
   display:inline;
   position:relative;
@@ -1129,6 +1142,73 @@ label.srs-toggle {
   word-wrap:break-word;
 }
 
+/* styles for blockquotes written in double brackets */
+
+.bq-container {
+  margin: calc( var(--text-base) * 1.833 / 2) 0;
+  padding: 0;
+  background-color: var(--secondary-bg-color);
+  border: solid 1px var(--ternary-border-color);
+  border-radius: 15px;
+  display: grid;
+  grid-template-columns: 12fr 2fr;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "txt txt"
+    "cite link";
+  position: relative;
+  top: 0;
+  transition: top ease 0.25s;
+}
+
+.bq-container:hover {
+  box-shadow: 1px 1px 15px var(--secondary-box-shadow-color);
+  top: -2px;
+}
+
+.bq-text {
+  grid-area: txt;
+  padding: 20px;
+  border-bottom: solid 1px var(--ternary-border-color);
+}
+
+.bq-text blockquote {
+  font-size: var(--text-base);
+  line-height: calc( var(--text-base) * 1.5);
+  padding: 0;
+}
+
+.bq-reference {
+  grid-area: cite;
+  padding: 20px;
+  border-right: solid 1px var(--ternary-border-color);
+}
+
+.bq-reference p {
+  padding: 0 0 0.5rem 0;
+  font-size: var(--text-s);
+  line-height: calc( var(--text-s) * 1.2);
+  font-weight: 600;
+}
+
+.bq-reference cite {
+  font-size: var(--text-s);
+  line-height: calc( var(--text-s) * 1.2);
+  font-style: normal;
+  padding: 0;
+}
+
+.bq-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bq-link p {
+  grid-area: link;
+  font-size: var(--text-s);
+}
+
 .related {
   background-color:var(--secondary-bg-color);
   width: 100%;
@@ -1138,8 +1218,8 @@ label.srs-toggle {
 
 .related h4 {
   color: var(--secondary-text-color);
-  padding-top: 20px;
-  padding-left: 20px
+  font-size: var(--text-xs);
+  padding: 1rem 0 0.5rem 20px;
 }
 
 .related-wrapper {
@@ -1166,9 +1246,9 @@ label.srs-toggle {
 }
 
 .related-title {
-  padding-left: 10px;
-  padding-right: 10px;
-  font-size: var(--text-xs) !important;
+  padding: 0 10px 5px 10px;
+  font-size: var(--text-s) !important;
+  line-height: calc( var(--text-s) * 1.3);
   font-family:  var(--heading-font-family) !important;
   font-weight: 600;
 }
@@ -1186,6 +1266,7 @@ label.srs-toggle {
   padding-left: 10px;
   padding-right: 5px;
   font-size: var(--text-s) !important;
+  line-height: calc( var(--text-s) * 1.4);
 }
 
 .scroll-to-top {

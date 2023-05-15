@@ -58,29 +58,28 @@
 
 <h1>{{ page.title }}</h1>
 {%- if page.subtitle != nil and page.subtitle != empty -%}
-<h2>{{ page.subtitle }}</h2>
+<h2 class="post-subtitle">{{ page.subtitle }}</h2>
 {%- endif -%}
 
-<article>
-<div class="content">
+<article class="content">
   {%- if site.preferences.wiki_style_link.enabled -%}
-    {%- assign content_array = content | split:'[[' -%}
-    {%- assign external_link_delimiter = '::' -%}
+    {%- assign content_array = content | split:'[[' -%} <!-- look for links -->
+    {%- assign external_link_delimiter = '::' -%} <!-- signifies links outside this page -->
 
-    {%- assign link_joiner_delimiter = '$@' -%}
+    {%- assign link_joiner_delimiter = '$@' -%} <!-- arbitrary text for separating items -->
     {%- for item in content_array -%}
-      {%- if forloop.index > 1 -%}
-        {%- assign itemparts = item | split:']]' -%}
+      {%- if forloop.index > 1 -%} <!-- skip the first chunk of text; assumes the first chunk is not a link -->
+        {%- assign itemparts = item | split:']]' -%} <!-- isolate the link in item[0] -->
         {%- assign internal_link = itemparts[0] -%}
         {%- assign external_link = itemparts[0] | split:external_link_delimiter -%}
-        {%- assign sidenote = itemparts[0] | split:sidenote_delimiter -%}
+        {%- assign sidenote = itemparts[0] | split:sidenote_delimiter -%} <!-- sidenote_delimiter appears not to be defined -->
     
-        {%- if external_link[1] == nil -%}
-          {%- assign result_posts = site.posts | where: 'title',itemparts[0] -%}
-          {%- assign result_pages = site.pages | where: 'title',itemparts[0] -%}
+        {%- if external_link[1] == nil -%} <!-- process internal link because there is no external link delimiter -->
+          {%- assign result_posts = site.posts | where: 'title',itemparts[0] -%} <!-- look for posts with matching title -->
+          {%- assign result_pages = site.pages | where: 'title',itemparts[0] -%} <!-- look for pages with matching title -->
           {%- assign internal_links = internal_links | append: link_joiner_delimiter | append: internal_link -%}
           {%- assign internal_urls = internal_urls | append: link_joiner_delimiter | append: result_posts[0].url | append: result_pages[0].url -%}
-        {%- else -%}
+        {%- else -%} <!-- process external link -->
           {%- assign external_links = external_links | append: link_joiner_delimiter | append: external_link[0] -%}
           {%- assign external_urls = external_urls | append: link_joiner_delimiter | append: external_link[1] -%}
         {%- endif -%}
@@ -93,25 +92,32 @@
     {%- assign external_url_array = external_urls | split:link_joiner_delimiter -%}
     {%- assign external_link_array = external_links | split:link_joiner_delimiter -%}
 
-    {%- assign replaced_content = content -%}
+<!-- this convoluted process to create arrays by first creating long strings with intermediate delimiters and then splitting the strings at the delimiters is necessary because liquid does not support creating arrays by assigning individual elements -->
+
+<!-- next replace the bracketed links with actual links -->
+<!-- first internal links -->
+
+    {%- assign replaced_content = content -%} <!-- create a copy of the page's content -->
     {%- for title in internal_link_array -%}
       {%- assign url = internal_url_array[forloop.index0] -%}
-      {%- if url == nil -%}
+      {%- if url == nil -%} <!-- check for a stale internal link -->
         {%- assign link_text = '<a class="stale-link" href="' | append: 'javascript:void(0)' | append: '">' | append: title | append: '</a>' -%}
       {%- elsif url == empty -%}
         {%- assign link_text = '<a class="stale-link" href="' | append: 'javascript:void(0)' | append: '">' | append: title | append: '</a>' -%}
       {%- else -%}
-        {%- assign post = site.posts | where: 'title',title -%}
-        {%- assign excerpt = post[0].content | markdownify | strip_html | truncate: 200 | newline_to_br -%}
-        {%- if site.preferences.pagepreview.enabled -%}
+        {%- assign post = site.posts | where: 'title',title -%} <!-- locate the target post -->
+        {%- assign excerpt = post[0].content | markdownify | strip_html | truncate: 200 | newline_to_br -%} <!-- create the excerpt -->
+        {%- if site.preferences.pagepreview.enabled -%} <!-- create tooltip-->
           {%- assign link_text = '<span class="tooltip"><a href="' | append: url | append: '">' | append: title | append: '</a><span class="right bottom"><span class="tooltip-title">' | append: title | append: '</span><br/><span class="tooltip-excerpt">' | append: excerpt | append: '</span><i></i></span></span>' -%}
-        {%- else -%}
+        {%- else -%} <!-- no tooltip -->
           {%- assign link_text = '<span><a href="' | append: url | append: '">' | append: title | append: '</a></span>' -%}
         {%- endif -%}
       {%- endif -%}
-      {%- assign bracket_link = '[[' | append: title | append: ']]' -%}
-      {%- assign replaced_content = replaced_content | replace: bracket_link,link_text -%}
+      {%- assign bracket_link = '[[' | append: title | append: ']]' -%} <!-- link plus brackets to be replaced -->
+      {%- assign replaced_content = replaced_content | replace: bracket_link,link_text -%} <!-- execute the replacement -->
     {%- endfor -%}
+
+<!-- then external links, sidenotes, etc -->
 
     {%- assign sideNoteCounter = 0 -%}
     {%- assign srsCounter = 0 -%}
@@ -119,7 +125,7 @@
         {%- assign url = external_url_array[forloop.index0] -%}
         {%- if url == "highlight" -%}
           {%- if site.preferences.highlighting.enabled -%}
-            {%- assign color = '#DAEDFF' -%}
+            {%- assign color = '#DAEDFF' -%} <!-- this is only a default color -->
             {%- if site.preferences.highlighting.color != nil and site.preferences.highlighting.color != empty and site.preferences.highlighting.color != null -%}
                 {%- assign color = '#' | append: site.preferences.highlighting.color -%}
             {%- endif -%}
@@ -129,6 +135,12 @@
           {%- if site.preferences.wrapping.enabled -%}
             {%- assign link_text = '<p class="boxit">' | append: title | append: '</p>' -%}
           {%- endif -%}
+        {%- elsif url == "bq" -%}
+          {%- assign bqparts = title | split:'^^' -%}
+            {%- assign link_text = '<div class="bq-container"><div class="bq-text"><blockquote>' | append: bqparts[0] | append: '</blockquote></div>' -%}
+            {%- assign link_text = link_text | append: '<div class="bq-reference"><p class="bq-source">' | append: bqparts[1] | append: '</p>' -%}
+            {%- assign link_text = link_text | append: '<cite>' | append: bqparts[2] | append: '</cite></div>' -%}
+            {%- assign link_text = link_text | append: '<div class="bq-link"><p><a href="' | append: bqparts[3] | append: '">Go &#x2192;</a></p></div></div>' -%}
         {%- elsif url == "img" -%}
           {%- if site.preferences.wrapping.enabled -%}
             {%- assign link_text = '<img src="' | append: title | append: '"/>' -%}
@@ -181,5 +193,4 @@
   {%- else -%}
     {{content}}
   {%- endif -%}
-</div>
 </article>
