@@ -51,8 +51,10 @@
       {%- else -%}
 
       <main>
-        {%- include Content.html -%}
-        {%- if page.content-type == "notes" or page.content-type == "post"  -%}
+        <article>
+          {%- include Content.html -%}
+          {%- if page.content-type == "notes" or page.content-type == "post"  -%}
+        </article>
         {%- include Backlinks.html -%}
         {%- include Related.html -%}
         {%- endif -%}

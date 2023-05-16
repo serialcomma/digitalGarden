@@ -21,3 +21,17 @@ That's it. Hope it works!! This ended up taking a few hours to debug. The big pr
 2. two
 3. three
 
+```CSS
+code {
+  font-family: 'JetBrains Mono', Menlo, Monaco, Consolas, monospace;
+  font-weight: 400;
+  display: inline-block;
+  overflow: auto !important;
+  white-space: pre-line !important;
+  word-wrap: break-word !important;
+  padding: 2px;
+  vertical-align: middle;
+  border: 1px solid var(--secondary-border-color);
+  border-radius: 5px;
+}
+```
