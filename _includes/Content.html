@@ -30,7 +30,7 @@
 *
 {%- endcomment -%}
 
-<!-- Parse internal links, external links, transclusions etc and manipulate the content to reflect it accordingly -->
+{%- comment -%} Parse internal links, external links, transclusions etc and manipulate the content to reflect it accordingly {%- endcomment -%}
 {%- if page.content-type == "post" -%}
 <ul class="tags">
   {%- if page.status != nil and page.status != empty -%}
@@ -41,7 +41,7 @@
   <li>
     <a href="/dates/#{{ page.date | date: '%d-%B-%Y' }}" class="tag">{{ page.date | date: '%d %B %Y' }}</a>
   </li>
-  <!-- Loop through page categories and print them in tags -->
+  {%- comment -%} Loop through page categories and print them in tags {%- endcomment -%}
   {%- for tag in page.tags -%}
     {%- if tag == 'Favorite' or tag == 'favorite' -%}
     <li>
@@ -56,8 +56,8 @@
 </ul>
 {%- endif -%}
 
-<header>
-  <h1>{{ page.title }}</h1>
+<header> <!-- recommended HTML for title and subtitle; note not H2 for subtitle -->
+  <h1 class="post-title">{{ page.title }}</h1>
   {%- if page.subtitle != nil and page.subtitle != empty -%}
   <p class="post-subtitle">{{ page.subtitle }}</p>
   {%- endif -%}
@@ -65,23 +65,23 @@
 
 <div class="content">
   {%- if site.preferences.wiki_style_link.enabled -%}
-    {%- assign content_array = content | split:'[[' -%} <!-- look for links -->
-    {%- assign external_link_delimiter = '::' -%} <!-- signifies links outside this page -->
+    {%- assign content_array = content | split:'[[' -%} {%- comment -%} look for links {%- endcomment -%}
+    {%- assign external_link_delimiter = '::' -%} {%- comment -%} signifies external links (links outside this blog) {%- endcomment -%}
 
-    {%- assign link_joiner_delimiter = '$@' -%} <!-- arbitrary text for separating items -->
+    {%- assign link_joiner_delimiter = '$@' -%} {%- comment -%} arbitrary text for separating items {%- endcomment -%}
     {%- for item in content_array -%}
-      {%- if forloop.index > 1 -%} <!-- skip the first chunk of text; assumes the first chunk is not a link -->
-        {%- assign itemparts = item | split:']]' -%} <!-- isolate the link in item[0] -->
+      {%- if forloop.index > 1 -%} {%- comment -%} skip the first chunk of text; assumes the first chunk is not a link {%- endcomment -%}
+        {%- assign itemparts = item | split:']]' -%} {%- comment -%} isolate the link in item[0] {%- endcomment -%}
         {%- assign internal_link = itemparts[0] -%}
         {%- assign external_link = itemparts[0] | split:external_link_delimiter -%}
-        {%- assign sidenote = itemparts[0] | split:sidenote_delimiter -%} <!-- sidenote_delimiter appears not to be defined -->
+        {%- assign sidenote = itemparts[0] | split:sidenote_delimiter -%} {%- comment -%} sidenote_delimiter appears not to be defined {%- endcomment -%}
     
-        {%- if external_link[1] == nil -%} <!-- process internal link because there is no external link delimiter -->
-          {%- assign result_posts = site.posts | where: 'title',itemparts[0] -%} <!-- look for posts with matching title -->
-          {%- assign result_pages = site.pages | where: 'title',itemparts[0] -%} <!-- look for pages with matching title -->
+        {%- if external_link[1] == nil -%} {%- comment -%} process internal link because there is no external link delimiter {%- endcomment -%}
+          {%- assign result_posts = site.posts | where: 'title',itemparts[0] -%} {%- comment -%} look for posts with matching title {%- endcomment -%}
+          {%- assign result_pages = site.pages | where: 'title',itemparts[0] -%} {%- comment -%} look for pages with matching title {%- endcomment -%}
           {%- assign internal_links = internal_links | append: link_joiner_delimiter | append: internal_link -%}
           {%- assign internal_urls = internal_urls | append: link_joiner_delimiter | append: result_posts[0].url | append: result_pages[0].url -%}
-        {%- else -%} <!-- process external link -->
+        {%- else -%} {%- comment -%} process external link {%- endcomment -%}
           {%- assign external_links = external_links | append: link_joiner_delimiter | append: external_link[0] -%}
           {%- assign external_urls = external_urls | append: link_joiner_delimiter | append: external_link[1] -%}
         {%- endif -%}
@@ -94,32 +94,32 @@
     {%- assign external_url_array = external_urls | split:link_joiner_delimiter -%}
     {%- assign external_link_array = external_links | split:link_joiner_delimiter -%}
 
-<!-- this convoluted process to create arrays by first creating long strings with intermediate delimiters and then splitting the strings at the delimiters is necessary because liquid does not support creating arrays by assigning individual elements -->
+{%- comment -%} this convoluted process to create arrays by first creating long strings with intermediate delimiters and then splitting the strings at the delimiters is necessary because liquid does not support creating arrays by explicitly assigning individual elements {%- endcomment -%}
 
-<!-- next replace the bracketed links with actual links -->
-<!-- first internal links -->
+{%- comment -%} next replace the bracketed links with actual links {%- endcomment -%}
+{%- comment -%} first internal links {%- endcomment -%}
 
-    {%- assign replaced_content = content -%} <!-- create a copy of the page's content -->
+    {%- assign replaced_content = content -%} {%- comment -%} create a copy of the page's content {%- endcomment -%}
     {%- for title in internal_link_array -%}
       {%- assign url = internal_url_array[forloop.index0] -%}
-      {%- if url == nil -%} <!-- check for a stale internal link -->
+      {%- if url == nil -%} {%- comment -%} check for a stale internal link {%- endcomment -%}
         {%- assign link_text = '<a class="stale-link" href="' | append: 'javascript:void(0)' | append: '">' | append: title | append: '</a>' -%}
       {%- elsif url == empty -%}
         {%- assign link_text = '<a class="stale-link" href="' | append: 'javascript:void(0)' | append: '">' | append: title | append: '</a>' -%}
       {%- else -%}
-        {%- assign post = site.posts | where: 'title',title -%} <!-- locate the target post -->
-        {%- assign excerpt = post[0].content | markdownify | strip_html | truncate: 200 | newline_to_br -%} <!-- create the excerpt -->
-        {%- if site.preferences.pagepreview.enabled -%} <!-- create tooltip-->
+        {%- assign post = site.posts | where: 'title',title -%} {%- comment -%} locate the target post {%- endcomment -%}
+        {%- assign excerpt = post[0].content | markdownify | strip_html | truncate: 200 | newline_to_br -%} {%- comment -%} create the excerpt {%- endcomment -%}
+        {%- if site.preferences.pagepreview.enabled -%} {%- comment -%} create tooltip {%- endcomment -%}
           {%- assign link_text = '<span class="tooltip"><a href="' | append: url | append: '">' | append: title | append: '</a><span class="right bottom"><span class="tooltip-title">' | append: title | append: '</span><br/><span class="tooltip-excerpt">' | append: excerpt | append: '</span><i></i></span></span>' -%}
-        {%- else -%} <!-- no tooltip -->
+        {%- else -%} {%- comment -%} no tooltip {%- endcomment -%}
           {%- assign link_text = '<span><a href="' | append: url | append: '">' | append: title | append: '</a></span>' -%}
         {%- endif -%}
       {%- endif -%}
-      {%- assign bracket_link = '[[' | append: title | append: ']]' -%} <!-- link plus brackets to be replaced -->
-      {%- assign replaced_content = replaced_content | replace: bracket_link,link_text -%} <!-- execute the replacement -->
+      {%- assign bracket_link = '[[' | append: title | append: ']]' -%} {%- comment -%} link plus brackets to be replaced {%- endcomment -%}
+      {%- assign replaced_content = replaced_content | replace: bracket_link,link_text -%} {%- comment -%} execute the replacement {%- endcomment -%}
     {%- endfor -%}
 
-<!-- then external links, sidenotes, etc -->
+{%- comment -%} then external links, sidenotes, etc {%- endcomment -%}
 
     {%- assign sideNoteCounter = 0 -%}
     {%- assign srsCounter = 0 -%}
@@ -127,7 +127,7 @@
         {%- assign url = external_url_array[forloop.index0] -%}
         {%- if url == "highlight" -%}
           {%- if site.preferences.highlighting.enabled -%}
-            {%- assign color = '#DAEDFF' -%} <!-- this is only a default color -->
+            {%- assign color = '#DAEDFF' -%} {%- comment -%} this is only a default color {%- endcomment -%}
             {%- if site.preferences.highlighting.color != nil and site.preferences.highlighting.color != empty and site.preferences.highlighting.color != null -%}
                 {%- assign color = '#' | append: site.preferences.highlighting.color -%}
             {%- endif -%}

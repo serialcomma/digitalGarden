@@ -225,7 +225,7 @@ pre code {
   border: 1px solid var(--secondary-border-color);
   border-radius: 5px;
   color: var(--primary-text-color);
-  margin: var(--text-base) 0;
+  margin-bottom: var(--text-base);
 }
 
 blockquote:before {
@@ -883,6 +883,10 @@ hr {
   font-size: var(--text-xs);
 }
 
+.post-title {
+  margin-top: 0.5rem;
+}
+
 .post-subtitle {
   padding-left: 2rem;
   font-family: var(--heading-font-family);
@@ -899,12 +903,13 @@ hr {
 .content a,
 .content ol,
 .content ul,
-.content li,
+/* .content li, */
 .content table,
 .content span,
 .content blockquote {
   font-family: var(--primary-font-family);
   font-size: var(--text-base); /* Let's set the font-size to something old-man friendly */  line-height: calc( var(--text-base) * 1.833);
+  margin-bottom: 2rem;
 }
 
 /* no h1 because that's for the article title */
