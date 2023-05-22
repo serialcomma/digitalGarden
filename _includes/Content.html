@@ -143,6 +143,8 @@
             {%- assign link_text = link_text | append: '<div class="bq-reference"><p class="bq-source">' | append: bqparts[1] | append: '</p>' -%}
             {%- assign link_text = link_text | append: '<cite>' | append: bqparts[2] | append: '</cite></div>' -%}
             {%- assign link_text = link_text | append: '<div class="bq-link"><p><a href="' | append: bqparts[3] | append: '">Go &#x2192;</a></p></div></div>' -%}
+        {%- elsif url == "pq" -%}
+            {%- assign link_text = '<div class="pq-container"><div class="pq-top-bar"></div><div class="pq-text"><p>' | append: title | append: '</p></div><div class="pq-bottom-bar"></div></div>' -%}
         {%- elsif url == "img" -%}
           {%- if site.preferences.wrapping.enabled -%}
             {%- assign link_text = '<img src="' | append: title | append: '"/>' -%}
